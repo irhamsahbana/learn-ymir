@@ -100,8 +100,20 @@ func (r *rootOptions) runServer(_ *cobra.Command, _ []string) error {
 	/**
 	* Initialize Main
 	*/
+	d := infrastructure.Envs.EntdemoMySQL
     adaptor := &adapters.Adapter{}
-	adaptor.Sync() // adapters init
+	adaptor.Sync(
+		adapters.WithEntdemoMySQL(&adapters.EntdemoMySQL{
+			NetworkDB: adapters.NetworkDB{
+				Database: d.Database,
+				User:d.User,
+				Password: d.Password,
+				Host: d.Host,
+				Port: d.Port,
+
+			},
+		}),
+	) // adapters init
     var errCh chan error
 	/**
 	* Initialize HTTP
