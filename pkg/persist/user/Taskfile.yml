@@ -1,0 +1,23 @@
+version: '3'
+
+tasks:
+  schema:
+    desc: create module ent user schema
+    cmds:
+      - go run -mod=mod entgo.io/ent/cmd/ent new --target ./schema {{.SCHEMA}}
+
+  migrate:sqlite:
+    desc: e.g migrate:sqlite -- -n {{.MIGRATION_NAME}}
+    deps:
+      - :go:generate
+    dir: ../../..
+    cmds:
+      - go run ./cmd/bin/main.go migrate -n {{.MIGRATION_NAME}} -s {{.IRON_SQLITE_FILE}}
+
+  migrate:mysql:
+    desc: e.g migrate:mysql -- -n {{.MIGRATION_NAME}}
+    deps:
+      - :go:generate
+    dir: ../../..
+    cmds:
+      - go run ./cmd/bin/main.go migrate  --dialect mysql -n {{.MIGRATION_NAME}} -s 'mysql://{{.ENTDEMO_MYSQL_USER}}:{{.ENTDEMO_MYSQL_PASSWORD}}@{{.ENTDEMO_MYSQL_HOST}}:{{.ENTDEMO_MYSQL_PORT}}/{{.ENTDEMO_MYSQL_DATABASE}}'

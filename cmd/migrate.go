@@ -5,6 +5,7 @@ package cmd
 import (
 	"entgo.io/ent/dialect"
 	"github.com/spf13/cobra"
+	userSchema "github.com/irhamsahbana/learn-ymir/pkg/persist/user/diff"
 )
 
 type migrateOptions struct {
@@ -45,6 +46,10 @@ func newMigrateCmd() *cobra.Command {
 func (m *migrateOptions) Run(cmd *cobra.Command, _ []string) error {
 	switch m.Dialect {
 	case dialect.SQLite, dialect.MySQL:
+		if err := userSchema.SchemaMigrate(m.Name, Dialect(m.Dialect), m.DSN); err != nil {
+			return err
+		}
+
 	    return nil
 	default:
 		return cmd.Usage()

@@ -3,6 +3,9 @@
 version: '3'
 
 includes:
+  user:
+    dir: ./pkg/persist/user
+    taskfile: ./pkg/persist/user/Taskfile.yml
 
 dotenv:
   - .env
@@ -40,4 +43,4 @@ tasks:
   git:delete:tag:
     desc: git delete tag
     cmds:
-      - git tag --delete <no value>
+      - git tag --delete {{.VERSION}}

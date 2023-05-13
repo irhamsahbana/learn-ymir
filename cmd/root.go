@@ -7,9 +7,11 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	// "database/sql"
 
-    "github.com/fatih/color"
-    "github.com/go-chi/chi/v5"
+	// "entgo.io/ent/dialect"
+	"github.com/fatih/color"
+	"github.com/go-chi/chi/v5"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"go.opentelemetry.io/otel"
@@ -17,6 +19,7 @@ import (
 
 	"github.com/irhamsahbana/learn-ymir/pkg/adapters"
 	"github.com/irhamsahbana/learn-ymir/pkg/infrastructure"
+	// "github.com/irhamsahbana/learn-ymir/pkg/persist/user"
 	"github.com/irhamsahbana/learn-ymir/pkg/ports/rest"
 	"github.com/irhamsahbana/learn-ymir/pkg/shared"
 	"github.com/irhamsahbana/learn-ymir/pkg/version"
@@ -114,6 +117,12 @@ func (r *rootOptions) runServer(_ *cobra.Command, _ []string) error {
 			},
 		}),
 	) // adapters init
+
+	// entDemoDB := user.Driver(
+	// 	user.WithDriver(adaptor.EntdemoMySQL, dialect.MySQL),
+	// 	user.WithTxIsolationLevel(sql.LevelLinearizable),
+	// )
+
     var errCh chan error
 	/**
 	* Initialize HTTP
