@@ -40,6 +40,13 @@ type Config struct {
 		MaxIdleCons       int `yaml:"max_idle_cons" env:"MAX_IDLE_CONS" env-description:"database max idle conn"`
 		ConnMaxLifetime   int `yaml:"conn_max_lifetime" env:"CONN_MAX_LIFETIME" env-description:"database max lifetime"`
 	} `yaml:"DB"`
+	EntdemoMySQL struct {
+		Database string `yaml:"database" env:"ENTDEMO_MYSQL_DATABASE" env-description:"database name"`
+		User     string `yaml:"user" env:"ENTDEMO_MYSQL_USER" env-description:"database user"`
+		Password string `yaml:"password" env:"ENTDEMO_MYSQL_PASSWORD" env-description:"database password"`
+		Host     string `yaml:"host" env:"ENTDEMO_MYSQL_HOST" env-description:"database host"`
+		Port     uint16 `yaml:"port" env:"ENTDEMO_MYSQL_PORT" env-description:"database port"`
+	} `yaml:"EntdemoMySQL"`
 }
 
 var (

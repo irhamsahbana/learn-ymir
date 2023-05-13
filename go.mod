@@ -4,11 +4,13 @@ go 1.19
 
 require (
 	entgo.io/ent v0.12.3
+	github.com/DATA-DOG/go-sqlmock v1.5.0
 	github.com/fatih/color v1.15.0
 	github.com/felixge/httpsnoop v1.0.3
 	github.com/go-chi/chi/v5 v5.0.8
 	github.com/go-playground/validator/v10 v10.13.0
 	github.com/go-resty/resty/v2 v2.7.0
+	github.com/go-sql-driver/mysql v1.7.1
 	github.com/gorilla/schema v1.2.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.15.2
 	github.com/ilyakaznacheev/cleanenv v1.4.2
